@@ -1,0 +1,105 @@
+body
+{
+	background-color: #EBEBEB;
+	color: #101010;
+	font-size: 12pt;
+}
+
+#header
+{
+	padding: 1em;
+	line-height: 100%;
+	padding-left: 60px;
+	background-image: url(pastemark.png);
+	background-repeat: no-repeat;
+	background-position: bottom left;
+}
+
+#header h1
+{
+	text-shadow: #BBBBBB -1px -1px 0px;
+}
+
+#slogan
+{
+	font-style: italic;
+	line-height: 100%;
+}
+
+#topmenu
+{
+	list-style: none;
+}
+
+#topmenu li
+{
+	float:left;
+	padding: 0 2em 0 0;
+	margin: 0;
+	font-size: 1.9em;
+}
+
+#topmenu li a
+{
+	font-size: 0.8em;
+	color: #000000;
+	text-shadow: #AAAAAA 0 0 3px;
+}
+
+#topmenu li a.selected
+{
+	font-size: 1em;
+}
+
+#create form p, #create form li
+{
+	line-height: normal !important;
+}
+
+form ul.radio
+{
+	list-style:none;
+	padding: 0;
+}
+
+label.normal
+{
+	font-weight: normal;
+}
+
+.mono
+{
+	font-family: monospace;
+}
+
+.wide
+{
+	width: 100%;
+}
+
+.button-large
+{
+	font-size: 1.5em;
+	padding: 0.3em 0.5em;
+}
+
+.button-medium
+{
+	font-size: 1em;
+	padding: 0.3em 0.5em;
+}
+
+a.loud
+{
+	color: #000000;
+}
+
+.text-right
+{
+	text-align: right;
+}
+
+.pm-error
+{
+	color: #CC0000;
+}

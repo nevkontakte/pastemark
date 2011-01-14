@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Pastemark - paste text snippet bookmarklet</title>
+	<link rel="stylesheet" href="css/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="css/print.css" type="text/css" media="print">
+	<!--[if lt IE 8]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+	<link rel="stylesheet" href="css/pastemark.css" type="text/css" media="screen, projection">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+	<script type="text/javascript" src="js/pastemark.js"></script>
+</head>
+<body>
+<div class="container">
+	<div id="header" class="span-24 last">
+		<h1 class="bottom loud">Pastemark</h1>
+	</div>
+	<div id="slogan" class="prepend-2 span-22 last">
+		<p class="top">&mdash; Type once, paste fast!</p>
+	</div>
+	<div class="span-24 last">
+		<ul id="topmenu">
+			<li><a href="#create" class="selected">Create Pastemark</a></li>
+			<li><a href="#about">About Pastemark</a></li>
+		</ul>
+	</div>
+	<div class="span-24">
+		&nbsp;
+	</div>
+	<div id="about">
+		<script type="text/javascript">
+		$("#about").addClass("hide");
+		</script>
+		<h3>What Pastemark is?</h3>
+		<p><span class="loud">Pastemark</span> is one of two-evening projects, which in designed to solve one problem, but solve it really well.</p>
+		<h3>No, I asked what Pastemark <i>really</i> is?</h3>
+		<p>Well, it's easier to explain <i>who</i> needs Pastemark. They are people who have to type similar texts (posts, mails, etc.) every day and don't want keep repeating themselfs. Pastemark will create easy-to-use bookmarklet for them which will paste text snippet into field they want.</p>
+		<h3>Why Pastemark is better than .txt file and Notepad?</h3>
+		<p>Of course, you can keep your text snippets in .txt file and copy-paste it from Notepad, if you like. But just imagine, you will have to open you documents, browse to folder with this magic file, open it, select text snippet, copy, return to browser and finally paste it. I guess, you can find better way to spend this time, because with Pastemark you will have to do it with at most three clicks &mdash; in three seconds!</p>
+		<h3>Ok, but I have nice desktop application which can do this job.</h3>
+		<p>Again, you can keep using it, if you like it. But Pastemark has advantages even in this case:</p>
+		<ol>
+			<li>It's fully cross-platform. If you can run your browser and your browser can run JavaScript, you can run Pastemark! No matter if your use Windows, Linux, Mac, FreeBSD, Android, iOS etc.</li>
+			<li>It's easy to stay in sync. Even if you have a bunch of devices with different OS and browsers, you can easily sync your snippets between them using such services like <a href="http://www.xmarks.com/">Xmarks</a> or similar (Personally I use Xmarks).</li>
+		</ol>
+		<h3>Yeah, I liked Pastemark! Can I help somehow?</h3>
+		<p>Yes, of course! If you have friend who needs Pastemark too, you can make him happy. Guess how. Right! Tell him about Pastemark!</p>
+	</div>
+	<div id="create">
+		<div class="span-17 append-1">
+			<p class="text-right quiet">All fields are required</p>
+		</div>
+		<div class="span-17 append-1">
+			<form class="large" id="pm-form" action="">
+				<div class="span-6 clear">
+					<p class="label">
+						<label for="pm-title">Title</label> <br>
+						<span class="quiet small">Title of your bookmarklet</span>
+					</p>
+				</div>
+				<div class="span-11 last">
+					<p>
+						<input type="text" name="pm-title" id="pm-title" class="text">
+						<br><span id="pm-error-title" class="pm-error small hide"></span>
+					</p>
+				</div>
+				
+				<div class="span-6 clear">
+					<p class="label">
+						<label for="pm-id-id">Select target by</label> <br>
+						<span class="quiet small">How target field will be chosen</span>
+					</p>
+				</div>
+				<div class="span-11 last">
+					<ul class="radio bottom" id="pm-id-ul">
+						<li><input type="radio" name="pm-id" id="pm-id-id" value="id"> <label for="pm-id-id" class="normal mono"><span class="quiet">#</span>id</label></li>
+						<li><input type="radio" name="pm-id" id="pm-id-name" value="name"> <label for="pm-id-name" class="normal mono"><span class="quiet">@</span>name</label></li>
+						<li><input type="radio" name="pm-id" id="pm-id-click" value="click"> <label for="pm-id-click" class="normal mono"><span class="quiet"><!--[if !IE]>-->&#8599;<!--<![endif]--><!--[if IE]>&#8593;<![endif]--></span>click</label></li>
+					</ul>
+					<p id="pm-error-id" class="pm-error small hide"></p>
+				</div>
+				
+				<div id="pm-target-wrapper" class="hide">
+					<div class="span-6 clear">
+						<p class="label">
+							<label for="pm-target">Target</label> <br>
+							<span class="quiet small">Target field id or name</span>
+						</p>
+					</div>
+					<div class="span-11 last">
+						<p>
+							<input type="text" name="pm-target" id="pm-target" class="text">
+							<br><span id="pm-error-target" class="pm-error small hide"></span>
+						</p>
+					</div>
+				</div>
+				
+				<div class="span-17 last">
+					<p>
+						<label for="pm-snippet">Text</label> <span class="quiet small">Text you want to be pasted into field</span><br>
+						<textarea name="pm-snippet" id="pm-snippet" class="text resizeable wide" rows="10" cols="70"></textarea>
+						<br><span id="pm-error-snippet" class="pm-error small hide"></span>
+					</p>
+				</div>
+				<div class="span-17 last">
+					<p>
+						<input type="submit" disabled="disabled" name="pm-submit" class="button-large" value="Generate!">
+						<input type="reset" class="button-medium" value="Erase">
+					</p>
+				</div>
+			</form>
+			<div class="span-17 last">
+				<div id="pm-ready-wrapper" class="success hide">
+					<h3>Ready!</h3>
+					<p class="large bottom">Drag this link to your bookmarks toolbar: <a href="#" id="pm-ready" class="loud">Result link</a>.</p>
+					<p>When you click this bookmarklet it will try to find a field by criteria you specified above and insert your text.</p>
+				</div>
+			</div>
+		</div>
+		<div class="span-6 last">
+			<h3>What Pastemark is?</h3>
+			<p>Pastemark is a simple tool for keeping text snippets in rowser and paste them quickly into fields.</p>
+			<h3>Do I need it?</h3>
+			<p>Yes, if you have to type same texts every day and want to optimize this process.</p>
+			<h3>How can I use it?</h3>
+			<p>Just fill fields on the left, press "Generate!" and drag generated bookmarklet onto your bookmark toolbar.</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>
