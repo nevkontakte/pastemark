@@ -1,3 +1,5 @@
+var base_url = "http://pastemark.me/";
+
 var template = {
 	"id":function(id, text)
 	{
@@ -78,6 +80,107 @@ var template = {
 		}
 	}
 };
+
+var pm_fast = function(){
+		var fields = [];
+		var textareas = document.getElementsByTagName("textarea");
+		var inputs = document.getElementsByTagName("input");
+		
+		for(var i = 0; i < textareas.length; i++)
+		{
+			fields.push(textareas[i]);
+		};
+		
+		for(var i = 0; i < inputs.length; i++)
+		{
+			if(inputs[i].type == "text" || inputs[i].type == "password")
+			{
+				fields.push(inputs[i]);
+			}
+		};
+		
+		// Set up body
+		var body_cursor = document.body.style.cursor;
+		document.body.style.cursor = "crosshair";
+		
+		var body_onclick = document.body.onclick;
+		document.body.onclick = function()
+		{
+			// Restore body
+			document.body.style.cursor = body_cursor;
+			document.body.onclick = body_onclick;
+			
+			// Restore other fields
+			for(var i = 0; i < fields.length; i++)
+			{
+				fields[i].style.cursor = fields[i].style_cursor_pm_save;
+				fields[i].style_cursor_pm_save = undefined;
+				
+				fields[i].onclick = fields[i].onclick_pm_save;
+				fields[i].onclick_pm_save = undefined;
+			}
+		};
+		
+		for(var i = 0; i < fields.length; i++)
+		{
+			fields[i].style_cursor_pm_save = fields[i].style.cursor;
+			fields[i].style.cursor = "crosshair";
+			
+			fields[i].onclick_pm_save = fields[i].onclick;
+			fields[i].onclick = function()
+			{
+				//
+				// Analyze target
+				//
+				var idby = "click";
+				var target = "";
+				if(this.id != undefined)
+				{
+					idby = "id";
+					target = encodeURIComponent(this.id);
+				}
+				else if(this.name != undefined)
+				{
+					idby = "name";
+					target = encodeURIComponent(this.name);
+				}
+				
+				var snippet = encodeURIComponent(this.value);
+				
+				titles = document.getElementsByTagName("h2");
+				if(titles.length == 0)
+				{
+					titles = document.getElementsByTagName("h1");
+					if(titles.length == 0)
+					{
+						titles = document.getElementsByTagName("title");
+					}
+				}
+				
+				var title = "";
+				if(titles.length != 0)
+				{
+					title = encodeURIComponent(titles[0].innerHTML);
+				}
+				
+				var url = base_url + "?title="+title+"&idby="+idby+"&target="+target+"&snippet="+snippet;
+				window.open(url);
+				// Restore body
+				document.body.style.cursor = body_cursor;
+				document.body.onclick = body_onclick;
+				
+				// Restore other fields
+				for(var i = 0; i < fields.length; i++)
+				{
+					fields[i].style.cursor = fields[i].style_cursor_pm_save;
+					fields[i].style_cursor_pm_save = undefined;
+					
+					fields[i].onclick = fields[i].onclick_pm_save;
+					fields[i].onclick_pm_save = undefined;
+				}
+			}
+		}
+	}
 
 function make_pastemark()
 {
@@ -228,11 +331,17 @@ $(document).ready(function(){
 			$("#pm-snippet").val(params["snippet"]);
 		}
 	}
+	
+	// Attach Pastemark Fast! links
+	var code = pm_fast.toString().replace(/\/\/.*/g, "").replace(/\/\*[\s\S]*\*\//, "").replace(/\n/g, " ").replace(/\s+/g, " ");
+	var link = "javascript:void("+code+"())";
+	
+	$(".fast-tool").attr("href", encodeURI(link));
 });
 
 
 //
-// This snippet taken from
+// Based on snippet from
 // http://jquery-howto.blogspot.com/2009/09/get-url-parameters-values-with-jquery.html
 //
 
