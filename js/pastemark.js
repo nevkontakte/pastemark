@@ -1,13 +1,13 @@
 var template = {
 	"id":function(id, text)
 	{
-		document.getElementById(decodeURI(id)).value = decodeURI(text);
+		document.getElementById(decodeURI(id)).value = decodeURI(text) + document.getElementById(decodeURI(id)).value;
 	},
 	"name":function(name, text){
 		var fields = document.getElementsByName(name);
 		for(var i = 0; i < fields.length; i++)
 		{
-			fields[i].value = decodeURI(text);
+			fields[i].value = decodeURI(text) + fields[i].value;
 		}
 	},
 	"click":function(dummy, text){
@@ -202,6 +202,65 @@ $(document).ready(function(){
 		$("#pm-target-wrapper").hide();
 		$("#pm-ready-wrapper").hide();
 	});
+	
+	// Fill fields from request
+	var params = $.getUrlVars();
+	if(params["idby"] != undefined)
+	{
+		if($("#pm-id-"+params["idby"]).size() != 0)
+		{
+			$("#pm-id-"+params["idby"]).click();
+			$("#pm-id-"+params["idby"]).change();
+		}
+		
+		if(params["title"] != undefined)
+		{
+			$("#pm-title").val(params["title"]);
+		}
+		
+		if(params["target"] != undefined)
+		{
+			$("#pm-target").val(params["target"]);
+		}
+		
+		if(params["snippet"] != undefined)
+		{
+			$("#pm-snippet").val(params["snippet"]);
+		}
+	}
+});
+
+
+//
+// This snippet taken from
+// http://jquery-howto.blogspot.com/2009/09/get-url-parameters-values-with-jquery.html
+//
+
+$.extend({
+  getUrlVars: function(){
+    var vars = [], hash;
+    var hashes = [];
+    if(window.location.href.lastIndexOf('#') != -1)
+    {
+    	hashes = window.location.href.slice(window.location.href.indexOf('?') + 1, window.location.href.lastIndexOf('#')).split('&');
+    }
+    else
+    {
+		hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    }
+    for(var i = 0; i < hashes.length; i++)
+    {
+      hash = hashes[i].split('=');
+      hash[0] = decodeURIComponent(hash[0]);
+      hash[1] = decodeURIComponent(hash[1]);
+      vars.push(hash[0]);
+      vars[hash[0]] = hash[1];
+    }
+    return vars;
+  },
+  getUrlVar: function(name){
+    return $.getUrlVars()[name];
+  }
 });
 
 /**
