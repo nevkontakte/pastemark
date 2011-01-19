@@ -99,6 +99,11 @@ a.loud
 	text-align: right;
 }
 
+.text-center
+{
+	text-align: center;
+}
+
 .pm-error
 {
 	color: #CC0000;
