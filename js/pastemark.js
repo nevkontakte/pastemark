@@ -339,6 +339,44 @@ $(document).ready(function(){
 	$(".fast-tool").attr("href", encodeURI(link));
 });
 
+//
+// Suggest better language
+//
+$(document).ready(function(){
+	var curr_lang = "en";
+	var langs = ["ru", "en"];
+	langs.splice(langs.indexOf("en"));
+	
+	$.ajax({
+		url: "http://ajaxhttpheaders.appspot.com",
+		dataType: 'jsonp',
+		success: function(headers) {
+			var accepted = headers['Accept-Language'].split(",");
+			for(var variant in accepted)
+			{
+				accepted[variant] = accepted[variant].split(";")[0];
+				
+				for(var candidat in langs)
+				{
+					var regexp = new RegExp(langs[candidat], "i");
+					if(regexp.test(accepted[variant]))
+					{
+						var lang_link = $("#lang ."+langs[candidat]);
+						var hint = $("<div id=\"lang-hint\">"+lang_link.attr("alt")+"&nbsp;<span><!--[if !IE]>-->&#x2934;<!--<![endif]--><!--[if IE]>&#x2191;<![endif]--></span></div>");
+						hint.hide();
+						hint.appendTo($("#lang"));
+						hint.css("top", String(lang_link.offset().top+lang_link.height())+"px");
+						hint.css("left", String(lang_link.offset().left+lang_link.width()/2-hint.width()+3)+"px");
+						
+						// Show
+						lang_link.addClass("suggested");
+						hint.fadeIn();
+					}
+				}
+			}
+		}
+	});
+});
 
 //
 // Based on snippet from

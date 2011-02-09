@@ -7,9 +7,7 @@ body
 
 #header
 {
-	padding: 1em;
 	line-height: 100%;
-	padding-left: 60px;
 	background-image: url(pastemark.png);
 	background-repeat: no-repeat;
 	background-position: bottom left;
@@ -17,7 +15,37 @@ body
 
 #header h1
 {
+	margin: 0.3em;
+	margin-left: 60px;
 	text-shadow: #BBBBBB -1px -1px 0px;
+}
+
+#lang
+{
+	padding: 1em 0;
+}
+
+#lang a
+{
+	color: #666666;
+	padding: 0.3ex 0;
+	text-decoration: none;
+}
+
+#lang a.suggested
+{
+	background-color: #F4F3A4;
+}
+
+#lang-hint
+{
+	color: #666666;
+	position: absolute;
+}
+
+#lang-hint span
+{
+	font-size: 1.5em;
 }
 
 #slogan
