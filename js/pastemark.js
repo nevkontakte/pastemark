@@ -346,6 +346,9 @@ $(document).ready(function(){
 	var curr_lang = "en";
 	var langs = ["ru", "en"];
 	langs.splice(langs.indexOf("en"));
+	$("#lang a").click(function(){
+		$(this).attr("href", $(this).attr("href")+document.location.hash);
+	});
 	
 	$.ajax({
 		url: "http://ajaxhttpheaders.appspot.com",
