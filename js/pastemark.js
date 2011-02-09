@@ -345,7 +345,6 @@ $(document).ready(function(){
 $(document).ready(function(){
 	var curr_lang = "en";
 	var langs = ["ru", "en"];
-	langs.splice(langs.indexOf(curr_lang));
 	$("#lang a").click(function(){
 		$(this).attr("href", $(this).attr("href")+document.location.hash);
 	});
@@ -364,6 +363,10 @@ $(document).ready(function(){
 					var regexp = new RegExp(langs[candidat], "i");
 					if(regexp.test(accepted[variant]))
 					{
+						if(langs[candidat] == curr_lang)
+						{
+							return;
+						}
 						var lang_link = $("#lang ."+langs[candidat]);
 						var hint = $("<div id=\"lang-hint\">"+lang_link.attr("alt")+"&nbsp;<span><!--[if !IE]>-->&#x2934;<!--<![endif]--><!--[if IE]>&#x2191;<![endif]--></span></div>");
 						hint.hide();
