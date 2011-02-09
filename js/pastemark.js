@@ -1,4 +1,4 @@
-var base_url = "http://pastemark.me/";
+var base_url = "http://pastemark.ru/";
 
 var template = {
 	"id":function(id, text)
