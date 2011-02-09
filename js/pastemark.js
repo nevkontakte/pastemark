@@ -345,7 +345,7 @@ $(document).ready(function(){
 $(document).ready(function(){
 	var curr_lang = "en";
 	var langs = ["ru", "en"];
-	langs.splice(langs.indexOf("en"));
+	langs.splice(langs.indexOf(curr_lang));
 	$("#lang a").click(function(){
 		$(this).attr("href", $(this).attr("href")+document.location.hash);
 	});
