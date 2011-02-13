@@ -4,11 +4,16 @@ var template = {
 	"id":function(id, text)
 	{
 		document.getElementById(decodeURI(id)).value = decodeURI(text) + document.getElementById(decodeURI(id)).value;
+		document.getElementById(decodeURI(id)).focus();
 	},
 	"name":function(name, text){
 		var fields = document.getElementsByName(name);
 		for(var i = 0; i < fields.length; i++)
 		{
+			if(i == 0)
+			{
+				fields[i].focus();
+			}
 			fields[i].value = decodeURI(text) + fields[i].value;
 		}
 	},
@@ -62,6 +67,7 @@ var template = {
 			{
 				// Paste text
 				this.value = decodeURI(text) + this.value;
+				this.focus();
 				
 				// Restore body
 				document.body.style.cursor = body_cursor;
