@@ -81,7 +81,7 @@ var template = {
 	}
 };
 
-var pm_fast = function(){
+var pm_fast = function(base_url){
 		var fields = [];
 		var textareas = document.getElementsByTagName("textarea");
 		var inputs = document.getElementsByTagName("input");
@@ -334,7 +334,7 @@ $(document).ready(function(){
 	
 	// Attach Pastemark Fast! links
 	var code = pm_fast.toString().replace(/\/\/.*/g, "").replace(/\/\*[\s\S]*\*\//, "").replace(/\n/g, " ").replace(/\s+/g, " ");
-	var link = "javascript:void("+code+"())";
+	var link = "javascript:void("+code+"(\""+base_url+"\"))";
 	
 	$(".fast-tool").attr("href", encodeURI(link));
 });
@@ -343,7 +343,7 @@ $(document).ready(function(){
 // Suggest better language
 //
 $(document).ready(function(){
-	var curr_lang = "en";
+	var curr_lang = "ru";
 	var langs = ["ru", "en"];
 	$("#lang a").click(function(){
 		$(this).attr("href", $(this).attr("href")+document.location.hash);
