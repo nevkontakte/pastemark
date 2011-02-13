@@ -1,3 +1,5 @@
+var curr_lang = "en";
+var langs = ["ru", "en"];
 var base_url = "http://en.pastemark.ru/";
 
 var template = {
@@ -349,8 +351,6 @@ $(document).ready(function(){
 // Suggest better language
 //
 $(document).ready(function(){
-	var curr_lang = "ru";
-	var langs = ["ru", "en"];
 	$("#lang a").click(function(){
 		$(this).attr("href", $(this).attr("href")+document.location.hash);
 	});
