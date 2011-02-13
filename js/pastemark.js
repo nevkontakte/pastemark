@@ -134,12 +134,12 @@ var pm_fast = function(base_url){
 				//
 				var idby = "click";
 				var target = "";
-				if(this.id != undefined)
+				if(this.id)
 				{
 					idby = "id";
 					target = encodeURIComponent(this.id);
 				}
-				else if(this.name != undefined)
+				else if(this.name)
 				{
 					idby = "name";
 					target = encodeURIComponent(this.name);
