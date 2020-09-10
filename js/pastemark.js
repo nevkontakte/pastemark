@@ -235,6 +235,7 @@ function make_pastemark()
   var link = "javascript:void("+code+"('"+encodeURI(target)+"', '"+encodeURI(snippet)+"'))";
 
   $("#pm-ready").text(title).attr("href", encodeURI(link));
+  $("#pm-ready-wrapper").show();
 }
 
 $(document).ready(function(){
